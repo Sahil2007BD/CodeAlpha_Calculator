@@ -1,1 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.25s ease;
+}
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+
+  background: linear-gradient(135deg, #e6e9f0, #eef1f5);
+}
+
+/* 🧮 CALCULATOR */
+.calculator {
+  width: 340px;
+  padding: 22px;
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 📊 HISTORY */
+#history {
+  max-height: 90px;
+  overflow-y: auto;
+
+  padding: 10px;
+  border-radius: 14px;
+
+  font-size: 13px;
+  color: #555;
+
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* 📺 DISPLAY */
+#display {
+  width: 100%;
+  height: 90px;
+  font-size: 34px;
+  text-align: right;
+  padding: 18px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.9);
+  color: #111;
+
+  outline: none;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.12s ease, box-shadow 0.2s ease;
+}
+
+/* 🔢 BUTTON GRID */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* 🔘 BUTTONS */
+button {
+  height: 60px;
+  font-size: 18px;
+
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: inherit;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* 🧹 CLEAR HISTORY BUTTON */
+.clear-history {
+  padding: 8px;
+  font-size: 13px;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.08);
+  color: #111;
+
+  transition: 0.2s;
+}
+
+.clear-history:hover {
+  background: rgba(0,0,0,0.15);
+  transform: scale(1.02);
+}
+
+/* 🌙 DARK MODE */
+.dark {
+  background: linear-gradient(135deg, #0f0f1a, #0b0b14);
+}
+
+.dark .calculator {
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+}
+
+.dark #history {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ddd;
+}
+
+.dark #display {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.dark button {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.dark button:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+.dark .clear-history {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.dark .clear-history:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* 🔥 SPECIAL CLEAR BUTTON */
+.clear-btn {
+  background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 6px 15px rgba(255, 0, 0, 0.25);
+}
+
+.clear-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(255, 0, 0, 0.35);
+}
+
+.clear-btn:active {
+  transform: scale(0.95);
+}
