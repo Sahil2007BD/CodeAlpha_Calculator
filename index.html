@@ -2,58 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Title shown in browser tab -->
   <title>CodeAlpha Calculator</title>
+
+  <!-- Linking external CSS file -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Main calculator container -->
 <div class="calculator">
 
-  <!-- 🌙 Theme toggle -->
+  <!-- Top section (theme toggle + clear history button) -->
   <div class="top-bar">
+
+    <!-- Button to switch between light and dark mode -->
     <button id="themeToggle">🌙</button>
-      <button class="clear-history" onclick="clearHistory()">Clear History</button>
+
+    <!-- Button to clear all saved history -->
+    <button class="clear-history" onclick="clearHistory()">Clear History</button>
+
   </div>
 
-  <!-- 📊 History -->
+  <!-- History section (shows previous calculations) -->
   <div id="history"></div>
 
-  <!-- 📺 Display -->
+  <!-- Display screen (disabled so user can't type directly) -->
   <input type="text" id="display" disabled>
 
-  <!-- 🧹 Clear history -->
-
-
-  <!-- 🔢 Buttons -->
+  <!-- Buttons section -->
   <div class="buttons">
 
+    <!-- Clear full screen -->
     <button class="clear-btn" onclick="clearDisplay()">C</button>
+
+    <!-- Delete last character -->
     <button onclick="deleteLast()">DEL</button>
+
+    <!-- Divide -->
     <button onclick="append('/')">÷</button>
+
+    <!-- Multiply -->
     <button onclick="append('*')">×</button>
 
+    <!-- Number buttons -->
     <button onclick="append('7')">7</button>
     <button onclick="append('8')">8</button>
     <button onclick="append('9')">9</button>
+
+    <!-- Subtract -->
     <button onclick="append('-')">−</button>
 
     <button onclick="append('4')">4</button>
     <button onclick="append('5')">5</button>
     <button onclick="append('6')">6</button>
+
+    <!-- Add -->
     <button onclick="append('+')">+</button>
 
     <button onclick="append('1')">1</button>
     <button onclick="append('2')">2</button>
     <button onclick="append('3')">3</button>
+
+    <!-- Calculate result -->
     <button onclick="calculate()">=</button>
 
+    <!-- Zero (usually bigger in UI, styled in CSS) -->
     <button onclick="append('0')" class="zero">0</button>
+
+    <!-- Decimal point -->
     <button onclick="append('.')">.</button>
 
   </div>
 
 </div>
 
+<!-- Linking JavaScript file -->
 <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,9 +1,12 @@
+// getting display input field
 let display = document.getElementById("display");
 
-let shouldReset = false; // 🔥 important fix
+// used to reset screen after showing result
+let shouldReset = false;
 
-// 👉 Append value
+// 👉 add number/operator to display
 function append(value) {
+  // if result was just shown, clear first
   if (shouldReset) {
     display.value = "";
     shouldReset = false;
@@ -11,7 +14,7 @@ function append(value) {
 
   display.value += value;
 
-  // ✨ soft premium animation
+  // small animation effect when typing
   display.animate(
     [
       { transform: "scale(1)", opacity: 1 },
@@ -25,59 +28,62 @@ function append(value) {
   );
 }
 
-
-
+// 👉 clear all history
 function clearHistory() {
   history = [];
   localStorage.removeItem("calcHistory");
   renderHistory();
 }
 
-
-
-
-
-
-// 👉 Clear screen
+// 👉 clear display screen
 function clearDisplay() {
   display.value = "";
   shouldReset = false;
 }
 
-// 👉 Delete last character
+// 👉 delete last character
 function deleteLast() {
   display.value = display.value.slice(0, -1);
 }
 
-// 👉 Calculate result
+// 👉 calculate result
 function calculate() {
   const result = evaluateExpression(display.value);
+
+  // save to history
   addToHistory(display.value + " = " + result);
+
   display.value = result;
+
+  // next input should reset
   shouldReset = true;
 }
 
-// ⌨️ Keyboard support
+// ⌨️ keyboard support
 document.addEventListener("keydown", function (event) {
 
+  // numbers and operators
   if (!isNaN(event.key) || "+-*/.".includes(event.key)) {
     append(event.key);
   }
 
+  // enter = calculate
   else if (event.key === "Enter") {
     calculate();
   }
 
+  // backspace = delete
   else if (event.key === "Backspace") {
     deleteLast();
   }
 
+  // escape = clear
   else if (event.key === "Escape") {
     clearDisplay();
   }
 });
 
-// 🌙 Dark mode toggle
+// 🌙 dark mode toggle
 const toggleBtn = document.getElementById("themeToggle");
 
 let isDark = false;
@@ -86,48 +92,53 @@ toggleBtn.addEventListener("click", function () {
   document.body.classList.toggle("dark");
   isDark = !isDark;
 
+  // change icon
   toggleBtn.textContent = isDark ? "☀️" : "🌙";
 });
 
+// 👉 evaluate math expression safely
 function evaluateExpression(expr) {
   try {
-    // replace symbols
+    // convert symbols to JS format
     expr = expr.replace(/×/g, "*").replace(/÷/g, "/");
 
-    // only allow safe characters
+    // allow only safe characters
     if (!/^[0-9+\-*/(). ]+$/.test(expr)) {
       return "Error";
     }
 
+    // calculate result
     return Function('"use strict"; return (' + expr + ")")();
   } catch {
     return "Error";
   }
 }
 
-
-
-
+// 👉 history box
 let historyBox = document.getElementById("history");
 
-// load history on start
+// load saved history from browser
 let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
+
+// show history on page load
 renderHistory();
 
-// add history
+// 👉 add new history item
 function addToHistory(entry) {
   history.unshift(entry);
 
-  // keep only last 10
+  // keep only last 10 items
   if (history.length > 10) {
     history.pop();
   }
 
+  // save in browser storage
   localStorage.setItem("calcHistory", JSON.stringify(history));
+
   renderHistory();
 }
 
-// render history
+// 👉 display history on screen
 function renderHistory() {
   historyBox.innerHTML = "";
 
