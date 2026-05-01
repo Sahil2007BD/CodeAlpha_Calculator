@@ -4,6 +4,8 @@ A simple and responsive calculator built using **HTML, CSS, and JavaScript** as 
 
 This project demonstrates basic DOM manipulation, event handling, and UI design principles.
 
+Live : https://sahil2007bd.github.io/CodeAlpha_Calculator/
+
 ---
 
 ## 📌 Internship Context
